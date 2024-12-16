@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="final_work.KirjautunutSisaan" 
+             Title="KirjautunutSisään">
+    
+    <ContentPage.MenuBarItems>
+        <!-- Luodaan Menubar Kirjautunut sisään sivulle-->
+        <MenuBarItem Text="Toiminto">
+            <!-- Esitellään menubarin alasvetovalikon napit-->
+            <MenuFlyoutItem Text="Hae" x:Name="Hae" Clicked="Hae_Clicked" />
+            
+            <MenuFlyoutItem Text="Muokkaa" x:Name="Muokkaa" Clicked="Muokkaa_Clicked"/>
+
+            <MenuFlyoutItem Text="Tallenna" x:Name="Tallenna" Clicked="Tallenna_Clicked"/>
+
+            <MenuFlyoutItem Text="Poista" x:Name="Poista" Clicked="Poista_Clicked"/>
+
+            <MenuFlyoutItem Text="Kirjaudu ulos" x:Name="KirjauduUlos" Clicked="KirjauduUlos_Clicked"/>
+
+            <MenuFlyoutItem Text="Lopeta" x:Name="LopetakirjautunutSisään" Clicked="LopetakirjautunutSisään_Clicked"/>
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+    <ScrollView>
+        <StackLayout>
+
+        
+    <VerticalStackLayout>
+        <!-- Tässä luodaan Kirjautumis sivulle Grid pohja tarvittaville kentille -->
+        <!-- Row = kuinka monta Riviä on käytössä komponenteille ja Colum = kuinka monta voi olla vierekkäin-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!-- Luodaan tarvittavat komponentit KirjautunutSisään sivulle-->
+            <!--Label on kenttä johon text komennolla saadaan haluttu teksti-->
+            <!--margin kohta tekee marginaalia kohteen ympärille jotta eivät olisi aivan vierekkäin-->
+            <!--row ja colum kohtiin annetaan arvot mihin kohtaa grid taulukkoa komponentti sijoitetaan-->
+            <Label Text="Etunimet:" Margin="5" Grid.Row="0" Grid.Column="0"/>
+            <Label Text="Sukunimi:" Margin="5" Grid.Row="1" Grid.Column="0"/>
+            <Label Text="Kutsumanimi:" Margin="5" Grid.Row="2" Grid.Column="0"/>
+            <Label Text="Henkilötunnus:" Margin="5" Grid.Row="3" Grid.Column="0"/>
+            <Label Text="Katuosoite:" Margin="5" Grid.Row="4" Grid.Column="0"/>
+            <Label Text="Postinumero:" Margin="5" Grid.Row="5" Grid.Column="0"/>
+            <Label Text="Postitoimipaikka:" Margin="5" Grid.Row="6" Grid.Column="0"/>
+            <Label Text="Alkamispäivä"   Margin="5" Grid.Row="7" Grid.Column="0"/>
+            <Label Text="Päättymispäivä"  Margin="5" Grid.Row="8" Grid.Column="0"/>
+            <!--picker in komponentti minne voi tallenttaa haluttuja asioita jotka voidaan sitten valikosta valita-->
+            <!-- x:name nimeää kohteen jotta sitä voidaan käyttää koodissa -->
+            <!--Title kertoo käyttäjälle mitä piceristä voi hakea -->
+            <!-- selectedindexchanged on käsky kun jotain valitaan pickeristä sen lohkon sisällä oleva koodi toteutetaan c# puolella-->
+            <Picker x:Name="NimikePicker" SelectedIndexChanged="NimikePicker_SelectedIndexChanged" Title="Nimike" Margin="5" Grid.Row="9" Grid.Column="0">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Työntekijä</x:String>
+                    <x:String>Toimihenkilö</x:String>
+                    <x:String>Ylempitoimihenkilö</x:String>
+                    <x:String>HR</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+            </Picker>
+            <Picker x:Name="YksikkoPicker" SelectedIndexChanged="YksikkoPicker_SelectedIndexChanged" Title="Yksikkö" Margin="5" Grid.Row="10" Grid.Column="0">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>A1</x:String>
+                    <x:String>A2</x:String>
+                    <x:String>B1</x:String>
+                    <x:String>B2</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+            </Picker>
+            <!--Entry on kenttä minnä käyttäjä voi kirjoittaa haluamaan tietoa mutta siihen voidaan c# puolelta tuoda tekstiä-->
+            <Entry x:Name="EtunimetEntry" Margin="5" Grid.Row="0" Grid.Column="1" WidthRequest="500"/>
+            <Entry x:Name="SukunimiEntry" Margin="5" Grid.Row="1" Grid.Column="1"/>
+            <Entry x:Name="KutsumanimiEntry" Margin="5" Grid.Row="2" Grid.Column="1"/>
+            <Entry x:Name="HenkilotunnusEntry" Margin="5" Grid.Row="3" Grid.Column="1"/>
+            <Entry x:Name="KatuosoiteEntry" Margin="5" Grid.Row="4" Grid.Column="1"/>
+            <Entry x:Name="PostinumeroEntry" Margin="5" Grid.Row="5" Grid.Column="1" TextChanged="PostinumeroEntry_TextChanged"/>
+            <Entry x:Name="PostitoimipaikkaEntry" Margin="5" Grid.Row="6" Grid.Column="1"/>
+            <!--date pickeristä voit valita halutun päivä määrän kalenterist-->
+            <!--dateselected suoritetaan c# puolella kun jokin päivä valitaan niin mitä silloin tehdään-->
+            <DatePicker x:Name="AlkamispaivaPicker"  DateSelected="AlkamispaivaPicker_DateSelected"  Margin="5" Grid.Row="7" Grid.Column="1"/>
+            <DatePicker x:Name="PaattymispaivaPicker" DateSelected="PaattymispaivaPicker_DateSelected"  Margin="5" Grid.Row="8" Grid.Column="1"/>
+            <Entry x:Name="NimikeEntry" Margin="5" Grid.Row="9" Grid.Column="1"/>
+            <Entry x:Name="YksikkoEntry" Margin="5" Grid.Row="10" Grid.Column="1"/>
+
+            <Entry x:Name="AlkamispaivaEntry" Margin="130,5,5,5" Grid.Row="7" Grid.Column="1"/>
+            <Entry x:Name="PaattymispaivaEntry" Margin="130,5,5,5" Grid.Row="8" Grid.Column="1"/>
+
+
+
+
+        </Grid>
+                <HorizontalStackLayout> <!-- horisontaalinen asettelu tämän sisällä oleville komponenteille-->
+                    <Label Text="Järjestä:" Margin="5"/>
+                    <!--Nappi komponentti käyttäjälle johon saa c# puolella haluamaansa toimtoa tässä clikked joka takoittaa että toiminto suoritetaan kun nappia painaistaan-->
+                    <Button Text="Kutsumanimi (A-Ö)" x:Name="KnimiNouseva" Margin="5" Clicked="KnimiNouseva_Clicked"/>
+                    <Button Text="Kutsumanimi (Ö-A)" x:Name="KnimiLaskeva" Margin="5" Clicked="KnimiLaskeva_Clicked"/>
+                    <Button Text="Sukunimi (A-Ö)" x:Name="SnimiNouseva" Margin="5" Clicked="SnimiNouseva_Clicked"/>
+                    <Button Text="Sukunimi (Ö-A)" x:Name="SnimiLaskeva" Margin="5" Clicked="SnimiLaskeva_Clicked"/>
+                    <Button Text="Nimike (A-Ö" x:Name="nimikeNouseva" Margin="5" Clicked="nimikeNouseva_Clicked"/>
+                    <Button Text="Nimike (Ö-A)" x:Name="nimikeLaskeva" Margin="5" Clicked="nimikeLaskeva_Clicked"/>
+                    
+                </HorizontalStackLayout>
+                    <!--border luo reunat tässä tapauksessa listviwv komponentille-->
+                    <!--stroke kertoo värin, strokethickness kuinka paksu reunus on ja margin tekee reunoille väljää jotta ei olis aivan laidoissa kiinni-->
+                <Border Stroke="Green"
+                        StrokeThickness="2"
+                        Margin="20">
+                    <!--strokeshape muokkaa reunuksen muotuo tässä tapauksessa kaikkia nurkkia hieman pyöristety-->
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="40,40,40,40" />
+                    </Border.StrokeShape>
+                    <!--listview on listan tarkastelu komponentti mihin voi listata haluttuja asioita ja tässä tapauksessa henkilöiden tietoja-->
+                    <!--item tapped on tapahtuma mikä suoritetaan c# puolella kun jotain henkilöä listalla klikataan-->
+                    <ListView x:Name="MyListView" MinimumHeightRequest="200" ItemTapped="MyListView_ItemTapped">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <!-- Tänne laitetaan näkymäkomponentit -->
+                                    <HorizontalStackLayout>
+                                        <Label Padding="20" Text="{Binding kutsumanimi}"/>
+                                        <Label Padding="20" Text="{Binding sukunimi}"/>
+                                        <Label Padding="20" Text="{Binding nimike}"/>
+                                    </HorizontalStackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Border>
+
+            </VerticalStackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

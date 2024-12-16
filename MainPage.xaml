@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="final_work.MainPage"
+             Title="Kiurjautuminen">
+    <ContentPage.MenuBarItems>
+        <!-- Luodaan Menubar Kirjautumis sivulle sivulle-->
+        <MenuBarItem Text="Toiminto">
+            <!-- Esitellään menubarin alasvetovalikon napit-->
+            <MenuFlyoutItem Text="Lopeta" x:Name="LopetaKirjautumisSivu" Clicked="LopetaKirjautumisSivu_Clicked" />
+
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+            <!-- Tässä luodaan Kirjautumis sivulle Grid pohja tarvittaville kentille -->
+            <!-- Row = kuinka monta Riviä on käytössä komponenteille ja Colum = kuinka monta voi olla vierekkäin-->
+            <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <!-- Tässä luodaan tarvittavat komponentit Kirjautumis sivulle-->
+                <!-- Kirjautunutsisään sivun xamlin puolella enemmän selitystä mitä mikäkin tekee-->
+                <Label Text="Käyttäjätunnus:" 
+                       Grid.Row="0" 
+                       Grid.Column="0" 
+                       Margin="10"/>
+                <Entry x:Name="KayttajaTunnusEntry" 
+                       Grid.Row="0" 
+                       Grid.Column="1" 
+                       Margin="10"/>
+                <Label Text="Salasana:" 
+                       Grid.Row="1" 
+                       Grid.Column="0" 
+                       Margin="10"/>
+                <Entry x:Name="SalasanaEntry" 
+                       Grid.Row="1" 
+                       Grid.Column="1" 
+                       Margin="10" 
+                       IsPassword="True"/>
+                <Button x:Name="TarkastusNappi" 
+                        Text="Näytä salasana"
+                        FontSize="10"
+                        Pressed="TarkastusNappi_Pressed" 
+                        Released="TarkastusNappi_Released"
+                        HeightRequest="5"
+                        Grid.Row="1" 
+                        Grid.Column="3" />
+                <Button x:Name="KirjauduSisaanNappi" 
+                        Text="Kirjaudu Sisään" 
+                        Clicked="KirjauduSisaanNappi_Clicked" 
+                        Grid.Row="2" 
+                        Grid.Column="1" 
+                        Margin="10"/>
+            </Grid>
+            
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
